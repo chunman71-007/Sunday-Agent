@@ -1,0 +1,34 @@
+name: Generate Sunday Sticker
+
+on:
+workflow_dispatch:
+inputs:
+style:
+description: '貼圖風格'
+required: true
+default: 'new_year'
+text:
+description: '貼圖文字'
+required: false
+default: 'Happy Meow Year'
+
+jobs:
+generate:
+runs-on: ubuntu-latest
+steps:
+- name: 取得程式碼
+uses: actions/checkout@v3
+
+- name: 設定 Python 環境
+uses: actions/setup-python@v4
+with:
+python-version: '3.10'
+
+- name: 安裝依賴（如有）
+run: pip install -r requirements.txt || echo "無依賴可安裝"
+
+- name: 執行貼圖生成器
+run: |
+python src/generate_sticker.py
+
+Add GitHub Actions workflow
