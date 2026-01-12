@@ -7,15 +7,15 @@ os.makedirs(output_dir, exist_ok=True)
 timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
 filename = f"{style}_sticker_{timestamp}.txt"
 filepath = os.path.join(output_dir, filename)
-content = f"""
-🐱 Sunday Agent 貼紙生成器
+
+content = f"""🐱 Sunday Agent 貼紙生成器
 樣式: {style}
 文字: {text}
-時間: {timestamp}
-"""
+時間: {timestamp}"""
+
 with open(filepath, "w", encoding="utf-8") as f:
 f.write(content.strip())
-print(f"貼紙已儲存至: {filepath}")
+print(f"✅ 貼紙已儲存至: {filepath}")
 
 if __name__ == "__main__":
 style = sys.argv[1] if len(sys.argv) > 1 else "new_year"
