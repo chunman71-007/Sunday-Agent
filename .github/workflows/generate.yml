@@ -42,3 +42,13 @@ jobs:
           python src/generate_sticker.py \
             "${{ inputs.style || 'new_year' }}" \
             "${{ inputs.text || 'Happy Meow Year' }}"
+
+      - name: Commit and push generated sticker
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add assets/generated/*
+          git commit -m "Auto-generate sticker: ${{ inputs.style || 'new_year' }}_sticker_${{ github.run_id }}" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
