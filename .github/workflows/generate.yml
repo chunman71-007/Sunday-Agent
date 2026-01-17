@@ -23,5 +23,7 @@ python-version: '3.10'
 - name: 安裝依賴（如有）
 run: pip install -r requirements.txt || echo "無需安裝依賴"
 - name: 執行貼紙生成器
-run: |
-python src/generate_sticker.py "${{ github.event.inputs.style }}" "${{ github.event.inputs.text }}"
+env:
+INPUT_STYLE: ${{ inputs.style }}
+INPUT_TEXT: ${{ inputs.text }}
+run: python src/generate_sticker.py "$INPUT_STYLE" "$INPUT_TEXT"
